@@ -14,7 +14,7 @@ Cuantos más aciertos seguidos hagas, mayores serán los puntos que obtengas!
 
 Descárgalo gratis desde: 
 - [Enlace Google Play](https://play.google.com/store/apps/details?id=tk.silvicgames.palabraspensadas "A pensar palabras Google Play"){:target="_blank"}
-- [Enlace Amazon](http://www.amazon.com/gp/product/B018T7Y4Q6 "A pensar palabras Amazon"){:target="_blank"}
+- [Enlace Amazon](https://www.amazon.com/gp/product/B018T7Y4Q6 "A pensar palabras Amazon"){:target="_blank"}
 - Buscando directamente por **A pensar palabras** en la Google Play o en Amazon
 
 ![Desktop View](/assets/img/a_pensar_palabras/a_pensar_palabras.png){: width="1600" height="953" .w-75 .normal}

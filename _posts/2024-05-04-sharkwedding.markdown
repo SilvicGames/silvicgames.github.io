@@ -8,7 +8,7 @@ Un Sharknado ataca la boda de Georgina y Laurence! Ayúdales a sobrevivir, escap
 
 Descárgalo gratis desde: 
 - [Enlace Google Play](https://play.google.com/store/apps/details?id=com.vicgames.polaravalanche&hl=es "Sharkwedding Google Play"){:target="_blank"}
-- [Enlace Amazon](http://www.amazon.com/gp/product/B012VRU1JE "Sharkwedding Amazon"){:target="_blank"}
+- [Enlace Amazon](https://www.amazon.com/gp/product/B012VRU1JE "Sharkwedding Amazon"){:target="_blank"}
 - Buscando directamente por **SharkWedding** en la Google Play o en Amazon
 
 ![Desktop View](/assets/img/sharkwedding/sharkwedding.png){: width="1600" height="946" .w-75 .normal}
