@@ -1,6 +1,6 @@
 ---
 title: A pensar palabras
-date: 2024-05-04 01:24:16 +02000
+date: 2015-12-02 01:43:16 +0200
 categories: [Videojuegos, Android]
 tags: [pensar, palabras]     # TAG names should always be lowercase
 thumbnail: /assets/img/a_pensar_palabras/a_pensar_palabras.png

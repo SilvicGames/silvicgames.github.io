@@ -1,6 +1,6 @@
 ---
 title: Definiciones
-date: 2024-05-04 01:29:44 +02000
+date: 2016-07-16 08:53:44 +0200
 categories: [Videojuegos, Android]
 tags: [definiciones, palabras]     # TAG names should always be lowercase
 thumbnail: /assets/img/definiciones/definiciones.png
