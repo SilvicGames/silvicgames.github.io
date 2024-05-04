@@ -4,6 +4,13 @@ date: 2024-05-04 01:29:44 +02000
 categories: [Videojuegos, Android]
 tags: [definiciones, palabras]     # TAG names should always be lowercase
 image: /assets/img/definiciones/definiciones.png
+carousels:
+  - images: 
+    - image: /assets/img/definiciones/definiciones.png
+    - image: /assets/img/definiciones/definiciones2.png
+    - image: /assets/img/definiciones/definiciones3.png
+    - image: /assets/img/definiciones/definiciones4.png
+    - image: /assets/img/definiciones/definiciones5.png
 ---
 Intenta acertar el mayor número de definiciones seguidas! Haz directamente login en el juego con tu cuenta de Google Juegos y verás en todo momento el ranking en el que te encuentras y los rivales cercanos a batir.
 
@@ -17,4 +24,4 @@ Descárgalo gratis desde:
 - [Enlace Amazon](https://www.amazon.com/SilvicGames-Definiciones/dp/B01J4JRSB6 "Definiciones Amazon"){:target="_blank"}
 - Buscando directamente por **Definiciones** en la Google Play o en Amazon
 
-{% include image-gallery.html folder="/assets/img/definiciones" %}
+{% include carousel.html height="50" unit="%" duration="7" number="1" %}
