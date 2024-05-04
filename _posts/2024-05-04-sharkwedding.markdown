@@ -18,4 +18,4 @@ Descárgalo gratis desde:
 - [Enlace Amazon](https://www.amazon.com/gp/product/B012VRU1JE "Sharkwedding Amazon"){:target="_blank"}
 - Buscando directamente por **SharkWedding** en la Google Play o en Amazon
 
-{% include carousel.html height="50" unit="%" duration="7" number="1" %}
+{% include carousel.html height="60" unit="%" duration="7" number="1" %}

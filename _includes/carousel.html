@@ -35,7 +35,7 @@
             {% for item in page.carousels[number].images %}
               <label class="carousel__indicator" for="{{ number }}{{ letters[forloop.index0] }}"></label>
             {% endfor %}
-        </div>
+        </div>        
     </div>
 </div>
 
@@ -109,7 +109,7 @@
 }
 .carousel__indicators {
   position: absolute;
-  bottom: 20px;
+  bottom: 0px;
   width: 100%;
   text-align: center;
 }
@@ -180,6 +180,26 @@
 </style>
 
 <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    var carouselControls = document.querySelectorAll('.carousel__control');
+    var carouselIndicators = document.querySelectorAll('.carousel__indicator');
+
+    carouselControls.forEach(function (control) {
+      if (sessionStorage.getItem(ModeToggle.MODE_KEY) == "light") {
+        control.style.borderColor = '#000';
+      } else {
+        control.style.borderColor = '#fafafa';
+      }
+    });
+    carouselIndicators.forEach(function (control) {
+      if (sessionStorage.getItem(ModeToggle.MODE_KEY) == "light") {
+        control.style.backgroundColor = '#000';
+      } else {
+        control.style.backgroundColor = '#fafafa';
+      }
+    });
+  });
+
   function isVisible(el) {
         while (el) {
             if (el === document) {

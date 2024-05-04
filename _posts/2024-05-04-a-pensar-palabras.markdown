@@ -25,4 +25,4 @@ Descárgalo gratis desde:
 - [Enlace Amazon](https://www.amazon.com/gp/product/B018T7Y4Q6 "A pensar palabras Amazon"){:target="_blank"}
 - Buscando directamente por **A pensar palabras** en la Google Play o en Amazon
 
-{% include carousel.html height="50" unit="%" duration="7" number="1" %}
+{% include carousel.html height="60" unit="%" duration="7" number="1" %}
