@@ -3,13 +3,14 @@ title: A pensar palabras
 date: 2024-05-04 01:24:16 +02000
 categories: [Videojuegos, Android]
 tags: [pensar, palabras]     # TAG names should always be lowercase
-image: /assets/img/a_pensar_palabras/a_pensar_palabras.png
+thumbnail: /assets/img/a_pensar_palabras/a_pensar_palabras.png
 carousels:
   - images: 
     - image: /assets/img/a_pensar_palabras/a_pensar_palabras.png
     - image: /assets/img/a_pensar_palabras/a_pensar_palabras2.png
     - image: /assets/img/a_pensar_palabras/a_pensar_palabras3.png
     - image: /assets/img/a_pensar_palabras/a_pensar_palabras4.png
+    - image: /assets/img/a_pensar_palabras/a_pensar_palabras5.png
 ---
 Ponte a pensar y acierta la palabra oculta de la lengua española. Ahora con definiciones!
 Cuantos más aciertos seguidos hagas, mayores serán los puntos que obtengas!

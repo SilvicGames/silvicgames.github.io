@@ -3,7 +3,7 @@ title: Definiciones
 date: 2024-05-04 01:29:44 +02000
 categories: [Videojuegos, Android]
 tags: [definiciones, palabras]     # TAG names should always be lowercase
-image: /assets/img/definiciones/definiciones.png
+thumbnail: /assets/img/definiciones/definiciones.png
 carousels:
   - images: 
     - image: /assets/img/definiciones/definiciones.png
