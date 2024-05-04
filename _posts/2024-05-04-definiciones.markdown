@@ -16,3 +16,5 @@ Descárgalo gratis desde:
 - [Enlace Google Play](https://play.google.com/store/apps/details?id=tk.silvicgames.definiciones "Definiciones Google Play"){:target="_blank"}
 - [Enlace Amazon](https://www.amazon.com/SilvicGames-Definiciones/dp/B01J4JRSB6 "Definiciones Amazon"){:target="_blank"}
 - Buscando directamente por **Definiciones** en la Google Play o en Amazon
+
+{% include image-gallery.html folder="/assets/img/definiciones" %}

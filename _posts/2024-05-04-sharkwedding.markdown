@@ -11,3 +11,5 @@ Descárgalo gratis desde:
 - [Enlace Google Play](https://play.google.com/store/apps/details?id=com.vicgames.polaravalanche&hl=es "Sharkwedding Google Play"){:target="_blank"}
 - [Enlace Amazon](https://www.amazon.com/gp/product/B012VRU1JE "Sharkwedding Amazon"){:target="_blank"}
 - Buscando directamente por **SharkWedding** en la Google Play o en Amazon
+
+{% include image-gallery.html folder="/assets/img/sharkwedding" %}
