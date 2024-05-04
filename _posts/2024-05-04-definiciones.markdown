@@ -1,7 +1,7 @@
 ---
 title: Definiciones
 date: 2024-05-04 01:29:44 +02000
-categories: [Announcements, Videojuegos, Android]
+categories: [Videojuegos, Android]
 tags: [definiciones, palabras]     # TAG names should always be lowercase
 ---
 Intenta acertar el mayor número de definiciones seguidas! Haz directamente login en el juego con tu cuenta de Google Juegos y verás en todo momento el ranking en el que te encuentras y los rivales cercanos a batir.

@@ -1,7 +1,7 @@
 ---
 title: Sharkwedding
 date: 2024-05-04 01:00:22 +02000
-categories: [Announcements, Videojuegos, Android]
+categories: [Videojuegos, Android]
 tags: [shark, wedding, sharkwedding]     # TAG names should always be lowercase
 ---
 Un Sharknado ataca la boda de Georgina y Laurence! Ayúdales a sobrevivir, escapando de tiburones, tornados... y de su propia boda!

@@ -1,7 +1,7 @@
 ---
 title: A pensar palabras
 date: 2024-05-04 01:24:16 +02000
-categories: [Announcements, Videojuegos, Android]
+categories: [Videojuegos, Android]
 tags: [pensar, palabras]     # TAG names should always be lowercase
 ---
 Ponte a pensar y acierta la palabra oculta de la lengua española. Ahora con definiciones!
