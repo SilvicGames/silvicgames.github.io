@@ -24,4 +24,4 @@ Descárgalo gratis desde:
 - [Enlace Amazon](https://www.amazon.com/SilvicGames-Definiciones/dp/B01J4JRSB6 "Definiciones Amazon"){:target="_blank"}
 - Buscando directamente por **Definiciones** en la Google Play o en Amazon
 
-{% include carousel.html height="60" unit="%" duration="7" number="1" %}
+{% include carousel.html height="60" unit="%" number="1" %}
