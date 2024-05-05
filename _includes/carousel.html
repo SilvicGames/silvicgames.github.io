@@ -1,39 +1,6 @@
 {% assign letterstring = "a,b,c,d,e,f,g,h,i,j,k,l,m,n" %}
 {% assign letters = letterstring | split: ',' %}
 {% assign number = include.number | minus: 1 %}
-<script>
-  function openModal(src) {
-    // Crear el modal y su contenido
-    var modal = document.createElement('div');
-    modal.classList.add('modal');
-
-    var modalContent = document.createElement('img');
-    modalContent.classList.add('modal-content');
-    modalContent.src = src;
-
-    var closeSpan = document.createElement('span');
-    closeSpan.classList.add('close');
-    closeSpan.innerHTML = '&times;';
-    closeSpan.onclick = function () {
-      modal.style.display = "none";
-      modal.remove();
-    }
-
-    // Cuando el usuario hace clic en cualquier lugar fuera del modal, ciérralo
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-        modal.remove();
-      }
-    }
-
-    modal.appendChild(modalContent);
-    modal.appendChild(closeSpan);
-    document.body.appendChild(modal);
-
-    modal.style.display = "block";
-  }
-</script>
 <div class="carousel__holder">
     <div id="carousel{{ number }}" class="carousel">
         {% for item in page.carousels[number].images %}
@@ -308,4 +275,33 @@
   },{{ include.duration }}000);
   {% endif %}
 
+  function openModal(src) {
+    var modal = document.createElement('div');
+    modal.classList.add('modal');
+
+    var modalContent = document.createElement('img');
+    modalContent.classList.add('modal-content');
+    modalContent.src = src;
+
+    var closeSpan = document.createElement('span');
+    closeSpan.classList.add('close');
+    closeSpan.innerHTML = '&times;';
+    closeSpan.onclick = function () {
+      modal.style.display = "none";
+      modal.remove();
+    }
+
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+        modal.remove();
+      }
+    }
+
+    modal.appendChild(modalContent);
+    modal.appendChild(closeSpan);
+    document.body.appendChild(modal);
+
+    modal.style.display = "block";
+  }
 </script>
