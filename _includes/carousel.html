@@ -248,25 +248,25 @@
     modal.style.display = "block";
   }
 
-  window.addEventListener('DOMContentLoaded', (event) => {
-    var carouselControls = document.querySelectorAll('.carousel__control');
-    var carouselIndicators = document.querySelectorAll('.carousel__indicator');
+  //window.addEventListener('DOMContentLoaded', (event) => {
+  //  var carouselControls = document.querySelectorAll('.carousel__control');
+  //  var carouselIndicators = document.querySelectorAll('.carousel__indicator');
 
-    carouselControls.forEach(function (control) {
-      if (sessionStorage.getItem(ModeToggle.MODE_KEY) == "light") {
-        control.style.borderColor = '#000';
-      } else {
-        control.style.borderColor = '#fafafa';
-      }
-    });
-    carouselIndicators.forEach(function (control) {
-      if (sessionStorage.getItem(ModeToggle.MODE_KEY) == "light") {
-        control.style.backgroundColor = '#000';
-      } else {
-        control.style.backgroundColor = '#fafafa';
-      }
-    });
-  });
+  //  carouselControls.forEach(function (control) {
+  //    if (sessionStorage.getItem(ModeToggle.MODE_KEY) == "light") {
+  //      control.style.borderColor = '#000';
+  //    } else {
+  //      control.style.borderColor = '#fafafa';
+  //    }
+  //  });
+  //  carouselIndicators.forEach(function (control) {
+  //    if (sessionStorage.getItem(ModeToggle.MODE_KEY) == "light") {
+  //      control.style.backgroundColor = '#000';
+  //    } else {
+  //      control.style.backgroundColor = '#fafafa';
+  //    }
+  //  });
+  //});
 
   function isVisible(el) {
         while (el) {
