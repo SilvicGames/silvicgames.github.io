@@ -40,6 +40,44 @@
 </div>
 
 <style>
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+.modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 100%;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
 .carousel__holder {width: 100%; position: relative; padding-bottom: {{ include.height }}{{ include.unit }}; margin: 1rem 0 1rem;}
 .carousel {
   height: 100%;
@@ -177,67 +215,9 @@
   background-position: center;
 }
 {% endfor %}
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1000; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-}
-
-.modal-content {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  max-width: 100%;
-}
-
-.close {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #f1f1f1;
-  font-size: 40px;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.close:hover,
-.close:focus {
-  color: #bbb;
-  text-decoration: none;
-  cursor: pointer;
-}
 </style>
 
 <script>
-  window.addEventListener('DOMContentLoaded', (event) => {
-    var carouselControls = document.querySelectorAll('.carousel__control');
-    var carouselIndicators = document.querySelectorAll('.carousel__indicator');
-
-    carouselControls.forEach(function (control) {
-      if (sessionStorage.getItem(ModeToggle.MODE_KEY) == "light") {
-        control.style.borderColor = '#000';
-      } else {
-        control.style.borderColor = '#fafafa';
-      }
-    });
-    carouselIndicators.forEach(function (control) {
-      if (sessionStorage.getItem(ModeToggle.MODE_KEY) == "light") {
-        control.style.backgroundColor = '#000';
-      } else {
-        control.style.backgroundColor = '#fafafa';
-      }
-    });
-  });
-
   function isVisible(el) {
         while (el) {
             if (el === document) {
@@ -264,17 +244,6 @@
             }
         }
   }
-  {% if include.duration %}
-  setInterval(function(){
-    var j=0;
-    var elements = document.querySelectorAll('#carousel{{ number}} .carousel__control--forward');
-    for(i=(elements.length - 1);i>-1;i--) {
-      if(isVisible(elements[i])) j=i;
-    }
-    elements[j].click();
-  },{{ include.duration }}000);
-  {% endif %}
-
   function openModal(src) {
     var modal = document.createElement('div');
     modal.classList.add('modal');
@@ -304,4 +273,34 @@
 
     modal.style.display = "block";
   }
+  window.addEventListener('DOMContentLoaded', (event) => {
+    var carouselControls = document.querySelectorAll('.carousel__control');
+    var carouselIndicators = document.querySelectorAll('.carousel__indicator');
+
+    carouselControls.forEach(function (control) {
+      if (sessionStorage.getItem(ModeToggle.MODE_KEY) == "light") {
+        control.style.borderColor = '#000';
+      } else {
+        control.style.borderColor = '#fafafa';
+      }
+    });
+    carouselIndicators.forEach(function (control) {
+      if (sessionStorage.getItem(ModeToggle.MODE_KEY) == "light") {
+        control.style.backgroundColor = '#000';
+      } else {
+        control.style.backgroundColor = '#fafafa';
+      }
+    });
+  });
+
+  {% if include.duration %}
+  setInterval(function(){
+    var j=0;
+    var elements = document.querySelectorAll('#carousel{{ number}} .carousel__control--forward');
+    for(i=(elements.length - 1);i>-1;i--) {
+      if(isVisible(elements[i])) j=i;
+    }
+    elements[j].click();
+  },{{ include.duration }}000);
+  {% endif %}
 </script>
