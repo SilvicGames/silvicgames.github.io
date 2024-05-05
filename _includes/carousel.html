@@ -27,7 +27,7 @@
         <div class="carousel__track">
           <ul>
             {% for item in page.carousels[number].images %}
-            <li class="carousel__slide" style="background-image: url('{{ item.image }}');"></li>
+            <li class="carousel__slide" style="background-image: url('{{ item.image }}');" onclick="openModal('{{ item.image }}');"></li>
             {% endfor %}
           </ul>
         </div>
@@ -177,6 +177,44 @@
   background-position: center;
 }
 {% endfor %}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+.modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 100%;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
 </style>
 
 <script>
@@ -236,4 +274,36 @@
     elements[j].click();
   },{{ include.duration }}000);
   {% endif %}
+
+  function openModal(src) {
+    // Crear el modal y su contenido
+    var modal = document.createElement('div');
+    modal.classList.add('modal');
+
+    var modalContent = document.createElement('img');
+    modalContent.classList.add('modal-content');
+    modalContent.src = src;
+
+    var closeSpan = document.createElement('span');
+    closeSpan.classList.add('close');
+    closeSpan.innerHTML = '&times;';
+    closeSpan.onclick = function () {
+      modal.style.display = "none";
+      modal.remove();
+    }
+
+    // Cuando el usuario hace clic en cualquier lugar fuera del modal, ciérralo
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+        modal.remove();
+      }
+    }
+
+    modal.appendChild(modalContent);
+    modal.appendChild(closeSpan);
+    document.body.appendChild(modal);
+
+    modal.style.display = "block";
+  }
 </script>
