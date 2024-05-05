@@ -27,7 +27,9 @@
         <div class="carousel__track">
           <ul>
             {% for item in page.carousels[number].images %}
-            <li class="carousel__slide" style="background-image: url('{{ item.image }}');" onclick="openModal('{{ item.image }}');"></li>
+            <li class="carousel__slide" style="background-image: url('{{ item.image }}');">
+              <div class="center_click" onclick="openModal('{{ item.image }}');"></div>
+            </li>
             {% endfor %}
           </ul>
         </div>
@@ -40,6 +42,15 @@
 </div>
 
 <style>
+.center_click {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 75%;
+  height: 75%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -136,16 +147,19 @@
   opacity: 1;
 }
 .carousel__control--backward {
+  cursor: pointer;
   left: 20px;
   -webkit-transform: rotate(-135deg);
           transform: rotate(-135deg);
 }
 .carousel__control--forward {
+  cursor: pointer;
   right: 20px;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
 }
 .carousel__indicators {
+  cursor: pointer;
   position: absolute;
   bottom: 0px;
   width: 100%;
