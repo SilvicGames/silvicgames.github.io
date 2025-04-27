@@ -3,17 +3,17 @@ title: Pachangas World Player
 date: 2024-03-24 08:53:44 +0200
 categories: [Videojuegos, PC, Mac, Fútbol]
 tags: [pwp, futbol, arcade]     # TAG names should always be lowercase
-thumbnail: /assets/img/pwp/Logo.png
+thumbnail: /assets/img/PWP/Logo.png
 carousels:  
   - images: 
-    - image: /assets/img/pwp/Special_WildBoards.png
-    - image: /assets/img/pwp/Special_FireShot.png
-    - image: /assets/img/pwp/Special_Cops_FireSpeaker.png
-    - image: /assets/img/pwp/Select_Gizmo.png
-    - image: /assets/img/pwp/Podium.png
-    - image: /assets/img/pwp/Yago_PostMatch.png
-    - image: /assets/img/pwp/PowerUp_Snow.png
-    - image: /assets/img/pwp/Special_SmokeBomb.png
+    - image: /assets/img/PWP/Special_WildBoards.png
+    - image: /assets/img/PWP/Special_FireShot.png
+    - image: /assets/img/PWP/Special_Cops_FireSpeaker.png
+    - image: /assets/img/PWP/Select_Gizmo.png
+    - image: /assets/img/PWP/Podium.png
+    - image: /assets/img/PWP/Yago_PostMatch.png
+    - image: /assets/img/PWP/PowerUp_Snow.png
+    - image: /assets/img/PWP/Special_SmokeBomb.png
 ---
 Pachangas World Player es el trabajo final de grado de Ingeniería Informática, un videojuego multijugador arcade de temática futbolística.
 
@@ -25,6 +25,6 @@ Se recomienda el uso de gamepad, altavoces y, para probar rápidamente los disti
 
 Descárgalo gratis desde: 
 
-[Enlace UOC](http://hdl.handle.net/10609/150907 "PWP en UOC"){:target="_blank"}
+[Enlace UOC](https://hdl.handle.net/10609/150907 "PWP en UOC"){:target="_blank"}
 
 {% include carousel.html height="60" unit="%" number="1" %}
