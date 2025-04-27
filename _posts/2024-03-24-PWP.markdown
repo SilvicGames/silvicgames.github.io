@@ -4,9 +4,7 @@ date: 2024-03-24 08:53:44 +0200
 categories: [Videojuegos, PC, Mac, Fútbol]
 tags: [pwp, futbol, arcade]     # TAG names should always be lowercase
 thumbnail: /assets/img/pwp/Logo.png
-carousels:
-  - videos: 
-    - video: https://www.youtube.com/watch?v=Fag3Q3ufo-w
+carousels:  
   - images: 
     - image: /assets/img/pwp/Special_WildBoards.png
     - image: /assets/img/pwp/Special_FireShot.png
@@ -27,6 +25,6 @@ Se recomienda el uso de gamepad, altavoces y, para probar rápidamente los disti
 
 Descárgalo gratis desde: 
 
-[Enlace UOC](http://hdl.handle.net/10609/150907 PWP en UOC"){:target="_blank"}
+[Enlace UOC](http://hdl.handle.net/10609/150907 "PWP en UOC"){:target="_blank"}
 
 {% include carousel.html height="60" unit="%" number="1" %}
