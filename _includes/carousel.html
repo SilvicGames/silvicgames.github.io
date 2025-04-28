@@ -116,22 +116,6 @@
   text-decoration: none;
   cursor: pointer;
 }
-/*.close {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #f1f1f1;
-  font-size: 40px;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.close:hover,
-.close:focus {
-  color: #bbb;
-  text-decoration: none;
-  cursor: pointer;
-}*/
 .youtube-container {
   position: absolute;
   width: 100%;
@@ -313,11 +297,14 @@
   cursor: pointer;
   position: absolute;
   bottom: 10px;
-  width: 100%;
+  width: 90%; /* Reducir el ancho para que no llegue hasta los bordes */
+  margin-left: 5%; /* Centrar horizontalmente */
+  margin-right: 5%;
+  left: 0;
   text-align: center;
   z-index: 3;
   pointer-events: none;
-  background-color: rgba(0, 0, 0, 0.4); /* Fondo semitransparente */
+  background-color: rgba(255, 255, 255, 0.7); /* Fondo semitransparente */
   padding: 8px 0; /* Espacio vertical para los indicadores */
   border-radius: 20px; /* Bordes redondeados */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra sutil */
@@ -390,6 +377,7 @@
   window.addEventListener('DOMContentLoaded', (event) => {
     var carouselControls = document.querySelectorAll('.carousel__control');
     var carouselIndicators = document.querySelectorAll('.carousel__indicator');
+    var carouselIndicatorContainers = document.querySelectorAll('.carousel__indicators');
 
     carouselControls.forEach(function (control) {
       if (sessionStorage.getItem(ModeToggle.MODE_KEY) == "light") {
@@ -399,10 +387,20 @@
       }
     });
     carouselIndicators.forEach(function (control) {
+      // Siempre establece el color de los indicadores en blanco
+      //control.style.backgroundColor = '#fafafa';
       if (sessionStorage.getItem(ModeToggle.MODE_KEY) == "light") {
         control.style.backgroundColor = '#000';
       } else {
         control.style.backgroundColor = '#fafafa';
+      }
+    });
+    // Ajustar el fondo del contenedor de indicadores según el modo
+    carouselIndicatorContainers.forEach(function (container) {
+      if (sessionStorage.getItem(ModeToggle.MODE_KEY) == "light") {
+        container.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
+      } else {
+        container.style.backgroundColor = 'rgba(0, 0, 0, 0.4)';
       }
     });
   });
