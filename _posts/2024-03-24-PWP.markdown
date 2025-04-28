@@ -14,7 +14,8 @@ carousels:
     - image: /assets/img/PWP/Podium.png
     - image: /assets/img/PWP/Yago_PostMatch.png
     - image: /assets/img/PWP/PowerUp_Snow.png
-    - image: /assets/img/PWP/Special_SmokeBomb.png    
+    - image: /assets/img/PWP/Special_SmokeBomb.png
+    - image: /assets/img/PWP/DVD.png    
 ---
 Pachangas World Player es el trabajo final de grado de Ingeniería Informática, un videojuego multijugador arcade de temática futbolística.
 
