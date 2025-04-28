@@ -19,6 +19,12 @@
     }
 
     constructor() {
+      // Comprobar si viene de una recarga forzada
+      const forceReload = localStorage.getItem("forceReload");
+      if (forceReload === "true") {
+        console.log("Recarga forzada detectada, aplicando el modo guardado");
+        localStorage.removeItem("forceReload");
+      }
       // Inicia la aplicación de estilos tan pronto como sea posible
       this.applyMode();
 
@@ -145,18 +151,33 @@
     }
 
     flipMode() {
-      // Simplificar la lógica para hacerla más directa y consistente
+      console.log("flipMode llamado. Modo actual:", this.mode);
+
+      // Añadir timestamp para depuración
+      const timestamp = new Date().getTime();
+
       if (this.isDarkMode) {
-        // Si actualmente está en modo oscuro, cambiar a claro
+        console.log("Cambiando a modo claro", timestamp);
         this.setLight();
+        localStorage.setItem("lastModeChange", "to_light_" + timestamp);
       } else {
-        // Si está en modo claro o no tiene modo definido, cambiar a oscuro
+        console.log("Cambiando a modo oscuro", timestamp);
         this.setDark();
+        localStorage.setItem("lastModeChange", "to_dark_" + timestamp);
       }
 
       // Forzar la aplicación del modo
       this.applyMode();
       this.notify();
+
+      // En dispositivos móviles, a veces es necesario forzar una recarga
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        console.log("Detectado dispositivo móvil, recargando la página...");
+        // Guardar la intención de cambio
+        localStorage.setItem("forceReload", "true");
+        // Recargar la página
+        window.location.reload();
+      }
     }
   } /* ModeToggle */
 
