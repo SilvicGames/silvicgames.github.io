@@ -67,16 +67,16 @@
   cursor: pointer;
 }
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1000; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1000;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.9);
 }
 
 .modal-content {
@@ -95,24 +95,24 @@
   font-size: 40px;
   font-weight: bold;
   transition: 0.3s;
-  background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente */
-  border-radius: 50%; /* Forma circular */
-  width: 50px; /* Ancho fijo */
-  height: 50px; /* Alto fijo */
-  display: flex; /* Para centrar el texto */
-  justify-content: center; /* Centrado horizontal */
-  align-items: center; /* Centrado vertical */
-  line-height: 40px; /* Ajusta la posición vertical del texto */
-  text-align: center; /* Centrar texto */
-  padding-bottom: 5px; /* Pequeño ajuste para centrar mejor la X */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra para destacarlo más */
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Sombra de texto para mejor contraste */
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 40px;
+  text-align: center;
+  padding-bottom: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); 
 }
 
 .close:hover,
 .close:focus {
-  color: #fff; /* Blanco brillante al pasar el mouse */
-  background-color: rgba(0, 0, 0, 0.8); /* Fondo más oscuro al pasar el mouse */
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.8);
   text-decoration: none;
   cursor: pointer;
 }
@@ -148,20 +148,16 @@
   display: none;
 }
 {% for item in page.carousels[number].images %}
-/* Transformación del track del carrusel */
 .carousel__activator:nth-of-type({{ forloop.index }}):checked ~ #carousel{{ number }} .carousel__track {
   -webkit-transform: translateX(-{{ forloop.index0 }}00%);
   transform: translateX(-{{ forloop.index0 }}00%);
 }
-/* Indicadores activos */
 .carousel__activator:nth-of-type({{ forloop.index }}):checked ~ #carousel{{ number }} .carousel__indicators .carousel__indicator:nth-of-type({{ forloop.index }}) {
   opacity: 1;
-  background-color: #ffffff; /* Blanco puro para el indicador activo */
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8); /* Brillo para el indicador activo */
-  transform: scale(1.2); /* Ligeramente más grande */
+  background-color: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  transform: scale(1.2);
 }
-
-/* Control de conjuntos de controles visibles */
 .carousel__activator:nth-of-type({{ forloop.index }}):checked ~ .carousel__dynamic-controls .carousel__control-set[data-slide="{{ forloop.index0 }}"] {
   display: block;
 }
@@ -256,7 +252,7 @@
   z-index: 1000;
   pointer-events: auto !important;
 }
-/* Nuevos estilos para los controles dinámicos */
+
 .carousel__dynamic-controls {
   position: absolute;
   width: 120%;
@@ -283,13 +279,13 @@
   pointer-events: auto !important; 
 }
 .carousel__control--backward {
-  left: 50px; /* Posicionamos claramente las flechas */
+  left: 50px;
   -webkit-transform: rotate(-135deg);
   transform: rotate(-135deg);
 }
 
 .carousel__control--forward {
-  right: 50px; /* Posicionamos claramente las flechas */
+  right: 50px;
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
@@ -297,17 +293,17 @@
   cursor: pointer;
   position: absolute;
   bottom: 10px;
-  width: 90%; /* Reducir el ancho para que no llegue hasta los bordes */
-  margin-left: 5%; /* Centrar horizontalmente */
+  width: 90%;
+  margin-left: 5%;
   margin-right: 5%;
   left: 0;
   text-align: center;
   z-index: 3;
   pointer-events: none;
-  background-color: rgba(255, 255, 255, 0.7); /* Fondo semitransparente */
-  padding: 8px 0; /* Espacio vertical para los indicadores */
-  border-radius: 20px; /* Bordes redondeados */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 8px 0;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 .carousel__indicator {
   height: 15px;
@@ -316,25 +312,24 @@
   display: inline-block;
   z-index: 2;
   cursor: pointer;
-  opacity: 0.6; /* Menos transparente que antes */
-  margin: 0 5px; /* Más espacio entre indicadores */
+  opacity: 0.6;
+  margin: 0 5px;
   pointer-events: auto !important;
   background-color: #fafafa;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5); /* Sombra para destacar cada indicador */
-  transition: all 0.3s ease; /* Animación suave al cambiar */
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
 }
 .carousel__indicator:hover {
   opacity: 0.9;
-  transform: scale(1.2); /* Pequeña animación al pasar el cursor */
+  transform: scale(1.2);
 }
-/* Selectores para mostrar los controles correctos */
+
 {% for item in page.carousels[number].images %}
 .carousel__activator:nth-of-type({{ forloop.index }}):checked ~ .carousel__dynamic-controls .carousel__control-set[data-slide="{{ forloop.index0 }}"] {
   display: block;
 }
 {% endfor %}
 
-/* El resto de los estilos necesarios... */
 {% for item in page.carousels[number].images %}
 .carousel__activator:nth-of-type({{ forloop.index }}):checked ~ .carousel__track {
   -webkit-transform: translateX(-{{ forloop.index0 }}00%);
@@ -387,15 +382,12 @@
       }
     });
     carouselIndicators.forEach(function (control) {
-      // Siempre establece el color de los indicadores en blanco
-      //control.style.backgroundColor = '#fafafa';
       if (sessionStorage.getItem(ModeToggle.MODE_KEY) == "light") {
         control.style.backgroundColor = '#000';
       } else {
         control.style.backgroundColor = '#fafafa';
       }
     });
-    // Ajustar el fondo del contenedor de indicadores según el modo
     carouselIndicatorContainers.forEach(function (container) {
       if (sessionStorage.getItem(ModeToggle.MODE_KEY) == "light") {
         container.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';

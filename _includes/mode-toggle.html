@@ -51,7 +51,7 @@
 
         self.notify();
       });
-    } // constructor() 
+    } 
 
     get sysDarkPrefers() {
       return window.matchMedia('(prefers-color-scheme: dark)');
@@ -97,7 +97,7 @@
         control.style.setProperty('border-color', color, 'important');
       });
       carouselIndicators.forEach(function (control) {
-        control.style.setProperty('background-color', color, 'important'); //sustituido color por "#fafafa" para que siempre se vean los indicadores de color blanco
+        control.style.setProperty('background-color', color, 'important');
       });
       // Ajustar el fondo del contenedor según el modo
       carouselIndicatorContainers.forEach(function (container) {
@@ -112,25 +112,16 @@
     setDark() {
       document.documentElement.setAttribute(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE);
       sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
-      //this.setCarouselColorControls("#fafafa");
     }
 
     setLight() {
       document.documentElement.setAttribute(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE);
       sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
-    //  this.setCarouselColorControls("#000000"); // Esto afectará solo a los controles, no a los indicadores
     }
 
     clearMode() {
       document.documentElement.removeAttribute(ModeToggle.MODE_ATTR);
       sessionStorage.removeItem(ModeToggle.MODE_KEY);
-
-      //// Al borrar, aplica según preferencia del sistema, pero los indicadores siempre blancos
-      //if (this.isSysDarkPrefer) {
-      //  this.setCarouselColorControls("#fafafa");
-      //} else {
-      //  this.setCarouselColorControls("#000000");
-      //}
     }
 
     // Notify another plugins that the theme mode has changed 
@@ -168,8 +159,8 @@
       }
 
       this.notify();
-    } // flipMode()
-  } // ModeToggle 
+    }
+  } 
 
   const modeToggle = new ModeToggle();
 </script>
