@@ -77,9 +77,14 @@
       return localStorage.getItem(ModeToggle.MODE_KEY);
     }
 
-    // Obtener el modo actual en la pantalla
+    // Modifica el getter modeStatus para ignorar la preferencia del sistema cuando hay un modo explícito
     get modeStatus() {
-      if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) {
+      // Si hay un modo definido explícitamente, respetarlo siempre
+      if (this.hasMode) {
+        return this.mode; // Usa el modo guardado (dark o light)
+      }
+      // Si no hay modo guardado, usar preferencia del sistema
+      else if (this.isSysDarkPrefer) {
         return ModeToggle.DARK_MODE;
       } else {
         return ModeToggle.LIGHT_MODE;
@@ -140,28 +145,17 @@
     }
 
     flipMode() {
-      if (this.hasMode) {
-        if (this.isSysDarkPrefer) {
-          if (this.isLightMode) {
-            this.clearMode();
-          } else {
-            this.setLight();
-          }
-        } else {
-          if (this.isDarkMode) {
-            this.clearMode();
-          } else {
-            this.setDark();
-          }
-        }
+      // Simplificar la lógica para hacerla más directa y consistente
+      if (this.isDarkMode) {
+        // Si actualmente está en modo oscuro, cambiar a claro
+        this.setLight();
       } else {
-        if (this.isSysDarkPrefer) {
-          this.setLight();
-        } else {
-          this.setDark();
-        }
+        // Si está en modo claro o no tiene modo definido, cambiar a oscuro
+        this.setDark();
       }
 
+      // Forzar la aplicación del modo
+      this.applyMode();
       this.notify();
     }
   } /* ModeToggle */
