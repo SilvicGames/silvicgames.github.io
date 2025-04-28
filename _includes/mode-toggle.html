@@ -187,6 +187,10 @@
   return new ModeToggle();
   }) (); // Inmediatamente invocada para crear la instancia
 
+  // Importante: Asignar window.modeToggle a modeToggle para compatibilidad
+  // Esto permite que los scripts que usan modeToggle (sin window) funcionen
+  modeToggle = window.modeToggle;
+
   // Exponer función para depuración
   function debugMode() {
     console.log("modeToggle definido:", window.modeToggle !== undefined);
