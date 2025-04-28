@@ -5,7 +5,8 @@ categories: [Videojuegos, PC, Mac, Fútbol]
 tags: [pwp, futbol, arcade]     # TAG names should always be lowercase
 thumbnail: /assets/img/PWP/Logo.png
 carousels:  
-  - images: 
+  - images:
+    - video: Fag3Q3ufo-w
     - image: /assets/img/PWP/Special_WildBoards.png
     - image: /assets/img/PWP/Special_FireShot.png
     - image: /assets/img/PWP/Special_Cops_FireSpeaker.png
@@ -13,7 +14,7 @@ carousels:
     - image: /assets/img/PWP/Podium.png
     - image: /assets/img/PWP/Yago_PostMatch.png
     - image: /assets/img/PWP/PowerUp_Snow.png
-    - image: /assets/img/PWP/Special_SmokeBomb.png
+    - image: /assets/img/PWP/Special_SmokeBomb.png    
 ---
 Pachangas World Player es el trabajo final de grado de Ingeniería Informática, un videojuego multijugador arcade de temática futbolística.
 
