@@ -19,39 +19,38 @@
     }
 
     constructor() {
-      if (this.hasMode) {
-        if (this.isDarkMode) {
-          if (!this.isSysDarkPrefer) {
-            this.setDark();
-          }
-        } else {
-          if (this.isSysDarkPrefer) {
-            this.setLight();
-          }
-        }
-      }
+      // Inicia la aplicación de estilos tan pronto como sea posible
+      this.applyMode();
 
       let self = this;
 
-      /* always follow the system prefers */
+      // Siempre sigue las preferencias del sistema
       this.sysDarkPrefers.addEventListener('change', () => {
-        if (self.hasMode) {
-          if (self.isDarkMode) {
-            if (!self.isSysDarkPrefer) {
-              self.setDark();
-            }
-          } else {
-            if (self.isSysDarkPrefer) {
-              self.setLight();
-            }
-          }
-
-          self.clearMode();
+        if (!self.hasMode) {
+          // Si no hay modo explícito, sigue la preferencia del sistema
+          self.applyMode();
         }
-
         self.notify();
       });
-    } /* constructor() */
+
+      // Asegura que los estilos se apliquen después de que el DOM esté completamente cargado
+      document.addEventListener('DOMContentLoaded', () => {
+        self.applyMode();
+      });
+    }
+
+    // Aplicar el modo actual (ya sea guardado o basado en preferencias del sistema)
+    applyMode() {
+      const currentMode = this.modeStatus;
+      document.documentElement.setAttribute(ModeToggle.MODE_ATTR, currentMode);
+
+      // Aplicar colores específicos a los controles del carrusel
+      if (currentMode === ModeToggle.DARK_MODE) {
+        this.setCarouselColorControls("#fafafa");
+      } else {
+        this.setCarouselColorControls("#000000");
+      }
+    }
 
     get sysDarkPrefers() {
       return window.matchMedia('(prefers-color-scheme: dark)');
@@ -74,48 +73,62 @@
     }
 
     get mode() {
-      return sessionStorage.getItem(ModeToggle.MODE_KEY);
+      // Usar localStorage en lugar de sessionStorage para persistencia entre sesiones
+      return localStorage.getItem(ModeToggle.MODE_KEY);
     }
 
-    /* get the current mode on screen */
+    // Obtener el modo actual en la pantalla
     get modeStatus() {
       if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) {
-        this.setCarouselColorControls("#fafafa");
         return ModeToggle.DARK_MODE;
       } else {
-        this.setCarouselColorControls("#000000");
         return ModeToggle.LIGHT_MODE;
       }
     }
-    
+
     setCarouselColorControls(color) {
       var carouselControls = document.querySelectorAll('.carousel__control');
       var carouselIndicators = document.querySelectorAll('.carousel__indicator');
+
+      if (!carouselControls.length && !carouselIndicators.length) {
+        // Si los elementos no existen todavía, programar para aplicar más tarde
+        setTimeout(() => this.setCarouselColorControls(color), 100);
+        return;
+      }
 
       carouselControls.forEach(function (control) {
         control.style.setProperty('border-color', color, 'important');
       });
       carouselIndicators.forEach(function (control) {
-        control.style.setProperty('background-color', color, 'important');
+        control.style.setProperty('background-color', "#fafafa", 'important');
       });
     }
 
     setDark() {
       document.documentElement.setAttribute(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE);
-      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);      
+      localStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+      this.setCarouselColorControls("#fafafa");
     }
 
     setLight() {
       document.documentElement.setAttribute(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE);
-      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+      localStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+      this.setCarouselColorControls("#000000"); // Esto afectará solo a los controles, no a los indicadores
     }
 
     clearMode() {
       document.documentElement.removeAttribute(ModeToggle.MODE_ATTR);
-      sessionStorage.removeItem(ModeToggle.MODE_KEY);
+      localStorage.removeItem(ModeToggle.MODE_KEY);
+
+      // Al borrar, aplica según preferencia del sistema, pero los indicadores siempre blancos
+      if (this.isSysDarkPrefer) {
+        this.setCarouselColorControls("#fafafa");
+      } else {
+        this.setCarouselColorControls("#000000");
+      }
     }
 
-    /* Notify another plugins that the theme mode has changed */
+    // Notificar a otros plugins que el modo de tema ha cambiado
     notify() {
       window.postMessage(
         {
@@ -150,8 +163,9 @@
       }
 
       this.notify();
-    } /* flipMode() */
+    }
   } /* ModeToggle */
 
+  // Inicialización inmediata para evitar parpadeos
   const modeToggle = new ModeToggle();
 </script>
