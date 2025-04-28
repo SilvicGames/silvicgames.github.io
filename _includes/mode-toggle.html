@@ -1,186 +1,195 @@
 <!-- Switch the mode between dark and light. -->
 
 <script type="text/javascript">
-  class ModeToggle {
-    static get MODE_KEY() {
-      return 'mode';
-    }
-    static get MODE_ATTR() {
-      return 'data-mode';
-    }
-    static get DARK_MODE() {
-      return 'dark';
-    }
-    static get LIGHT_MODE() {
-      return 'light';
-    }
-    static get ID() {
-      return 'mode-toggle';
-    }
-
-    constructor() {
-      // Comprobar si viene de una recarga forzada
-      const forceReload = localStorage.getItem("forceReload");
-      if (forceReload === "true") {
-        console.log("Recarga forzada detectada, aplicando el modo guardado");
-        localStorage.removeItem("forceReload");
+  // Define modeToggle en el ámbito global (window)
+  window.modeToggle = (function () {
+    class ModeToggle {
+      static get MODE_KEY() {
+        return 'mode';
       }
-      // Inicia la aplicación de estilos tan pronto como sea posible
-      this.applyMode();
+      static get MODE_ATTR() {
+        return 'data-mode';
+      }
+      static get DARK_MODE() {
+        return 'dark';
+      }
+      static get LIGHT_MODE() {
+        return 'light';
+      }
+      static get ID() {
+        return 'mode-toggle';
+      }
 
-      let self = this;
-
-      // Siempre sigue las preferencias del sistema
-      this.sysDarkPrefers.addEventListener('change', () => {
-        if (!self.hasMode) {
-          // Si no hay modo explícito, sigue la preferencia del sistema
-          self.applyMode();
+      constructor() {
+        // Comprobar si viene de una recarga forzada
+        const forceReload = localStorage.getItem("forceReload");
+        if (forceReload === "true") {
+          console.log("Recarga forzada detectada, aplicando el modo guardado");
+          localStorage.removeItem("forceReload");
         }
-        self.notify();
-      });
+        // Inicia la aplicación de estilos tan pronto como sea posible
+        this.applyMode();
 
-      // Asegura que los estilos se apliquen después de que el DOM esté completamente cargado
-      document.addEventListener('DOMContentLoaded', () => {
-        self.applyMode();
-      });
-    }
+        let self = this;
 
-    // Aplicar el modo actual (ya sea guardado o basado en preferencias del sistema)
-    applyMode() {
-      const currentMode = this.modeStatus;
-      document.documentElement.setAttribute(ModeToggle.MODE_ATTR, currentMode);
+        // Siempre sigue las preferencias del sistema
+        this.sysDarkPrefers.addEventListener('change', () => {
+          if (!self.hasMode) {
+            // Si no hay modo explícito, sigue la preferencia del sistema
+            self.applyMode();
+          }
+          self.notify();
+        });
 
-      // Aplicar colores específicos a los controles del carrusel
-      if (currentMode === ModeToggle.DARK_MODE) {
+        // Asegura que los estilos se apliquen después de que el DOM esté completamente cargado
+        document.addEventListener('DOMContentLoaded', () => {
+          self.applyMode();
+        });
+      }
+
+      // Aplicar el modo actual (ya sea guardado o basado en preferencias del sistema)
+      applyMode() {
+        const currentMode = this.modeStatus;
+        document.documentElement.setAttribute(ModeToggle.MODE_ATTR, currentMode);
+
+        // Aplicar colores específicos a los controles del carrusel
+        if (currentMode === ModeToggle.DARK_MODE) {
+          this.setCarouselColorControls("#fafafa");
+        } else {
+          this.setCarouselColorControls("#000000");
+        }
+      }
+
+      get sysDarkPrefers() {
+        return window.matchMedia('(prefers-color-scheme: dark)');
+      }
+
+      get isSysDarkPrefer() {
+        return this.sysDarkPrefers.matches;
+      }
+
+      get isDarkMode() {
+        return this.mode === ModeToggle.DARK_MODE;
+      }
+
+      get isLightMode() {
+        return this.mode === ModeToggle.LIGHT_MODE;
+      }
+
+      get hasMode() {
+        return this.mode != null;
+      }
+
+      get mode() {
+        // Usar localStorage en lugar de sessionStorage para persistencia entre sesiones
+        return localStorage.getItem(ModeToggle.MODE_KEY);
+      }
+
+      // Modifica el getter modeStatus para ignorar la preferencia del sistema cuando hay un modo explícito
+      get modeStatus() {
+        // Si hay un modo definido explícitamente, respetarlo siempre
+        if (this.hasMode) {
+          return this.mode; // Usa el modo guardado (dark o light)
+        }
+        // Si no hay modo guardado, usar preferencia del sistema
+        else if (this.isSysDarkPrefer) {
+          return ModeToggle.DARK_MODE;
+        } else {
+          return ModeToggle.LIGHT_MODE;
+        }
+      }
+
+      setCarouselColorControls(color) {
+        var carouselControls = document.querySelectorAll('.carousel__control');
+        var carouselIndicators = document.querySelectorAll('.carousel__indicator');
+
+        if (!carouselControls.length && !carouselIndicators.length) {
+          // Si los elementos no existen todavía, programar para aplicar más tarde
+          setTimeout(() => this.setCarouselColorControls(color), 100);
+          return;
+        }
+
+        carouselControls.forEach(function (control) {
+          control.style.setProperty('border-color', color, 'important');
+        });
+        carouselIndicators.forEach(function (control) {
+          control.style.setProperty('background-color', "#fafafa", 'important');
+        });
+      }
+
+      setDark() {
+        document.documentElement.setAttribute(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE);
+        localStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
         this.setCarouselColorControls("#fafafa");
-      } else {
-        this.setCarouselColorControls("#000000");
-      }
-    }
-
-    get sysDarkPrefers() {
-      return window.matchMedia('(prefers-color-scheme: dark)');
-    }
-
-    get isSysDarkPrefer() {
-      return this.sysDarkPrefers.matches;
-    }
-
-    get isDarkMode() {
-      return this.mode === ModeToggle.DARK_MODE;
-    }
-
-    get isLightMode() {
-      return this.mode === ModeToggle.LIGHT_MODE;
-    }
-
-    get hasMode() {
-      return this.mode != null;
-    }
-
-    get mode() {
-      // Usar localStorage en lugar de sessionStorage para persistencia entre sesiones
-      return localStorage.getItem(ModeToggle.MODE_KEY);
-    }
-
-    // Modifica el getter modeStatus para ignorar la preferencia del sistema cuando hay un modo explícito
-    get modeStatus() {
-      // Si hay un modo definido explícitamente, respetarlo siempre
-      if (this.hasMode) {
-        return this.mode; // Usa el modo guardado (dark o light)
-      }
-      // Si no hay modo guardado, usar preferencia del sistema
-      else if (this.isSysDarkPrefer) {
-        return ModeToggle.DARK_MODE;
-      } else {
-        return ModeToggle.LIGHT_MODE;
-      }
-    }
-
-    setCarouselColorControls(color) {
-      var carouselControls = document.querySelectorAll('.carousel__control');
-      var carouselIndicators = document.querySelectorAll('.carousel__indicator');
-
-      if (!carouselControls.length && !carouselIndicators.length) {
-        // Si los elementos no existen todavía, programar para aplicar más tarde
-        setTimeout(() => this.setCarouselColorControls(color), 100);
-        return;
       }
 
-      carouselControls.forEach(function (control) {
-        control.style.setProperty('border-color', color, 'important');
-      });
-      carouselIndicators.forEach(function (control) {
-        control.style.setProperty('background-color', "#fafafa", 'important');
-      });
-    }
-
-    setDark() {
-      document.documentElement.setAttribute(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE);
-      localStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
-      this.setCarouselColorControls("#fafafa");
-    }
-
-    setLight() {
-      document.documentElement.setAttribute(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE);
-      localStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
-      this.setCarouselColorControls("#000000"); // Esto afectará solo a los controles, no a los indicadores
-    }
-
-    clearMode() {
-      document.documentElement.removeAttribute(ModeToggle.MODE_ATTR);
-      localStorage.removeItem(ModeToggle.MODE_KEY);
-
-      // Al borrar, aplica según preferencia del sistema, pero los indicadores siempre blancos
-      if (this.isSysDarkPrefer) {
-        this.setCarouselColorControls("#fafafa");
-      } else {
-        this.setCarouselColorControls("#000000");
-      }
-    }
-
-    // Notificar a otros plugins que el modo de tema ha cambiado
-    notify() {
-      window.postMessage(
-        {
-          direction: ModeToggle.ID,
-          message: this.modeStatus
-        },
-        '*'
-      );
-    }
-
-    flipMode() {
-      console.log("flipMode llamado. Modo actual:", this.mode);
-
-      // Añadir timestamp para depuración
-      const timestamp = new Date().getTime();
-
-      if (this.isDarkMode) {
-        console.log("Cambiando a modo claro", timestamp);
-        this.setLight();
-        localStorage.setItem("lastModeChange", "to_light_" + timestamp);
-      } else {
-        console.log("Cambiando a modo oscuro", timestamp);
-        this.setDark();
-        localStorage.setItem("lastModeChange", "to_dark_" + timestamp);
+      setLight() {
+        document.documentElement.setAttribute(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE);
+        localStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+        this.setCarouselColorControls("#000000"); // Esto afectará solo a los controles, no a los indicadores
       }
 
-      // Forzar la aplicación del modo
-      this.applyMode();
-      this.notify();
+      clearMode() {
+        document.documentElement.removeAttribute(ModeToggle.MODE_ATTR);
+        localStorage.removeItem(ModeToggle.MODE_KEY);
 
-      // En dispositivos móviles, a veces es necesario forzar una recarga
-      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        console.log("Detectado dispositivo móvil, recargando la página...");
-        // Guardar la intención de cambio
-        localStorage.setItem("forceReload", "true");
-        // Recargar la página
-        window.location.reload();
+        // Al borrar, aplica según preferencia del sistema, pero los indicadores siempre blancos
+        if (this.isSysDarkPrefer) {
+          this.setCarouselColorControls("#fafafa");
+        } else {
+          this.setCarouselColorControls("#000000");
+        }
       }
-    }
-  } // Fin ModeToggle
 
-  // Inicialización inmediata para evitar parpadeos
-  const modeToggle = new ModeToggle();
+      // Notificar a otros plugins que el modo de tema ha cambiado
+      notify() {
+        window.postMessage(
+          {
+            direction: ModeToggle.ID,
+            message: this.modeStatus
+          },
+          '*'
+        );
+      }
+
+      flipMode() {
+        console.log("flipMode llamado. Modo actual:", this.mode);
+
+        // Añadir timestamp para depuración
+        const timestamp = new Date().getTime();
+
+        if (this.isDarkMode) {
+          console.log("Cambiando a modo claro", timestamp);
+          this.setLight();
+          localStorage.setItem("lastModeChange", "to_light_" + timestamp);
+        } else {
+          console.log("Cambiando a modo oscuro", timestamp);
+          this.setDark();
+          localStorage.setItem("lastModeChange", "to_dark_" + timestamp);
+        }
+
+        // Forzar la aplicación del modo
+        this.applyMode();
+        this.notify();
+
+        // En dispositivos móviles, a veces es necesario forzar una recarga
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+          console.log("Detectado dispositivo móvil, recargando la página...");
+          // Guardar la intención de cambio
+          localStorage.setItem("forceReload", "true");
+          // Recargar la página
+          window.location.reload();
+        }
+      }
+    } // Fin ModeToggle
+
+  // Devuelve la instancia, no la clase
+  return new ModeToggle();
+  }) (); // Inmediatamente invocada para crear la instancia
+
+  // Exponer función para depuración
+  function debugMode() {
+    console.log("modeToggle definido:", window.modeToggle !== undefined);
+    console.log("Modo actual:", window.modeToggle ? window.modeToggle.mode : "no disponible");
+  }
 </script>
