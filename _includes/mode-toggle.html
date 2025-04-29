@@ -91,21 +91,12 @@
     setCarouselColorControls(color) {
       var carouselControls = document.querySelectorAll('.carousel__control');
       var carouselIndicators = document.querySelectorAll('.carousel__indicator');
-      var carouselIndicatorContainers = document.querySelectorAll('.carousel__indicators');
 
       carouselControls.forEach(function (control) {
         control.style.setProperty('border-color', color, 'important');
       });
       carouselIndicators.forEach(function (control) {
         control.style.setProperty('background-color', color, 'important');
-      });
-      // Ajustar el fondo del contenedor según el modo
-      carouselIndicatorContainers.forEach(function (container) {
-        if (color === "#000000") { // Modo claro
-          container.style.setProperty('background-color', 'rgba(255, 255, 255, 0.7)', 'important');
-        } else { // Modo oscuro
-          container.style.setProperty('background-color', 'rgba(0, 0, 0, 0.4)', 'important');
-        }
       });
     }
 
