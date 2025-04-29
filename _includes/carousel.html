@@ -23,10 +23,14 @@
 
     <div class="carousel__control-set" data-slide="{{ forloop.index0 }}">
       <label class="control-background backward-bg" for="{{ number }}{{ prevletter }}">
-        <span class="carousel__control carousel__control--backward"></span>
+        <div class="arrow-container">
+          <span class="carousel__control carousel__control--backward"></span>
+        </div>
       </label>
       <label class="control-background forward-bg" for="{{ number }}{{ nextletter }}">
-        <span class="carousel__control carousel__control--forward"></span>
+        <div class="arrow-container">
+          <span class="carousel__control carousel__control--forward"></span>
+        </div>
       </label>
     </div>
     {% endfor %}
@@ -61,6 +65,15 @@
 </div>
 
 <style>
+  :root {
+  /* Valores base para las flechas del carrusel para tamaño pequeño (equivalente a móvil) */
+  --min-arrow-size: 20px;
+  --min-border-width: 3px;
+  
+  /* Factores de escala basados en el viewport */
+  --size-scale-factor: calc(0.5vw + var(--min-arrow-size));
+  --border-scale-factor: calc(0.1vw + var(--min-border-width));
+}
 .center_click {
   position: absolute;
   top: 50%;
@@ -220,20 +233,16 @@
 {% endfor %}
 
 .carousel__control {
-  height: 30px;
-  width: 30px;
+  height: var(--size-scale-factor);
+  width: var(--size-scale-factor);
   display: block;
-  cursor: pointer;
-  border-width: 5px 5px 0 0;
+  border-width: var(--border-scale-factor) var(--border-scale-factor) 0 0;
   border-style: solid;
   border-color: #fafafa;
   opacity: 1;
   outline: 0;
   z-index: 1000;
   position: absolute;
-  top: 50%;
-  transform-origin: center;
-  margin-top: -15px;
   pointer-events: none;
 }
 
@@ -263,13 +272,15 @@
   pointer-events: auto !important; 
 }
 .carousel__control--backward {
-  left: 33%;
   transform: rotate(-135deg);
+  left: calc(50% - (var(--size-scale-factor) / 2 - var(--border-scale-factor)));
+  top: calc(50% - var(--size-scale-factor) / 2);
 }
 
 .carousel__control--forward {
-  right: 33%;
-  transform: rotate(45deg);  
+  transform: rotate(45deg);
+  left: calc(50% - (var(--size-scale-factor) / 2 + var(--border-scale-factor)));
+  top: calc(50% - var(--size-scale-factor) / 2);
 }
 .carousel__indicators {
   cursor: pointer;
@@ -329,7 +340,18 @@
   border-radius: 5px;
   z-index: 5;
   cursor: pointer;
-  pointer-events: auto !important; 
+  pointer-events: auto !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.arrow-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 .backward-bg {
@@ -344,43 +366,6 @@
   right: 2%;
   top: 50%;
   transform: translateY(-50%);
-}
-@media (max-width: 768px) {
-  .control-background {
-    width: 40px;
-    height: 60px;
-  }
-  
-  .carousel__control {
-    height: 25px;
-    width: 25px;
-    border-width: 4px 4px 0 0;
-  }
-  
-  .carousel__control--backward,
-  .carousel__control--forward {
-    margin-left: 13px;
-    margin-top: 13px;
-  }
-}
-
-@media (max-width: 480px) {
-  .control-background {
-    width: 35px;
-    height: 50px;
-  }
-  
-  .carousel__control {
-    height: 20px;
-    width: 20px;
-    border-width: 3px 3px 0 0;
-  }
-  
-  .carousel__control--backward,
-  .carousel__control--forward {
-    margin-left: 10px;
-    margin-top: 10px;
-  }
 }
 </style>
 
