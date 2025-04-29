@@ -32,8 +32,7 @@
       }
 
       let self = this;
-
-      // always follow the system prefers 
+             
       this.sysDarkPrefers.addEventListener('change', () => {
         if (self.hasMode) {
           if (self.isDarkMode) {
@@ -77,7 +76,6 @@
       return sessionStorage.getItem(ModeToggle.MODE_KEY);
     }
 
-    // get the current mode on screen 
     get modeStatus() {
       if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) {
         this.setCarouselColorControls("#fafafa");
@@ -115,7 +113,6 @@
       sessionStorage.removeItem(ModeToggle.MODE_KEY);
     }
 
-    // Notify another plugins that the theme mode has changed 
     notify() {
       window.postMessage(
         {
