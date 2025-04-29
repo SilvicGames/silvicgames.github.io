@@ -90,9 +90,17 @@
       var carouselControls = document.querySelectorAll('.carousel__control');
       var carouselIndicators = document.querySelectorAll('.carousel__indicator');
       var carouselIndicatorContainers = document.querySelectorAll('.carousel__indicators');
+      var controlBackgrounds = document.querySelectorAll('.control-background');
 
       carouselControls.forEach(function (control) {
         control.style.setProperty('border-color', color, 'important');
+      });
+      controlBackgrounds.forEach(function (bg) {
+        if (color === '#000000') {
+          bg.style.setProperty('background-color', 'rgba(255, 255, 255, 0.7)', 'important');
+        } else {
+          bg.style.setProperty('background-color', 'rgba(0, 0, 0, 0.4)', 'important');
+        }
       });
       carouselIndicators.forEach(function (control) {
         control.style.setProperty('background-color', color, 'important');
