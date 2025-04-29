@@ -372,22 +372,29 @@
   window.addEventListener('DOMContentLoaded', (event) => {
     var carouselControls = document.querySelectorAll('.carousel__control');
     var carouselIndicators = document.querySelectorAll('.carousel__indicator');
+    var carouselIndicatorContainers = document.querySelectorAll('.carousel__indicators');
 
     carouselControls.forEach(function (control) {
-      if (sessionStorage.getItem(ModeToggle.MODE_KEY) == "light") {
+      if (sessionStorage.getItem(ModeToggle.MODE_KEY) == 'light') {
         control.style.borderColor = '#000';
       } else {
         control.style.borderColor = '#fafafa';
       }
     });
     carouselIndicators.forEach(function (control) {
-      if (sessionStorage.getItem(ModeToggle.MODE_KEY) == "light") {
+      if (sessionStorage.getItem(ModeToggle.MODE_KEY) == 'light') {
         control.style.backgroundColor = '#000';
       } else {
         control.style.backgroundColor = '#fafafa';
       }
     });
-    
+    carouselIndicatorContainers.forEach(function (container) {
+      if (sessionStorage.getItem(ModeToggle.MODE_KEY) == 'light') {
+        container.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
+      } else {
+        container.style.backgroundColor = 'rgba(0, 0, 0, 0.4)';
+      }
+    });
   });
   {% if include.duration %}
   setInterval(function(){
