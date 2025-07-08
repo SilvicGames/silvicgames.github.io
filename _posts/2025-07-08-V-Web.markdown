@@ -1,8 +1,8 @@
 ---
 title: V (boceto Web)
 date: 2025-07-08 10:42:44 +0200
-categories: [Videojuegos, PC, Web, Cartas]
-tags: [cartas, pc, web]     # TAG names should always be lowercase
+categories: [Videojuegos, Web, Cartas]
+tags: [cartas, V]     # TAG names should always be lowercase
 thumbnail: /assets/img/V-web/Logo.png
 carousels:  
   - images:
